@@ -2,7 +2,7 @@
 
 **IntelliStack AI** is a fully functional AI SaaS application built using the **PERN stack (PostgreSQL, Express, React, Node.js)**. This platform provides a variety of AI-powered tools with secure user authentication and subscription-based access to premium features. The app is designed for seamless user experience and efficient AI interactions.
 
-[Live Demo Link](#) *(Add your live link here)*
+[Live Demo Link](#) *(https://intelli-stack-ai-saas-platform.vercel.app/)*
 
 ---
 
@@ -80,4 +80,4 @@ npm start
 
 ## 🔹 Live Demo
 
-Experience IntelliStack AI online: [Live Demo Link](#) *(Add your live link here)*
+Experience IntelliStack AI online: [Live Demo Link](#) *(https://intelli-stack-ai-saas-platform.vercel.app/)*
