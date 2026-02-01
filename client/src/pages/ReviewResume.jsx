@@ -70,9 +70,7 @@ const ReviewResume = () => {
           outline-none transition"
         />
 
-        <p className="text-xs text-gray-400 mt-1">
-          Supports PDF resumes only.
-        </p>
+        <p className="text-xs text-gray-400 mt-1">Supports PDF resumes only.</p>
 
         <button
           type="submit"
@@ -90,16 +88,20 @@ const ReviewResume = () => {
       </form>
 
       {/* RIGHT CARD – Analysis Results */}
+
+      {/* RIGHT CARD – Analysis Results */}
       <div
         className="lg:col-span-3 w-full p-6 rounded-2xl flex flex-col min-h-[28rem]
-        bg-gradient-to-br from-[#1E1F3D]/90 to-[#0B1020]/80
-        backdrop-blur-xl border border-purple-600/20 shadow-lg"
+    bg-gradient-to-br from-[#1E1F3D]/90 to-[#0B1020]/80
+    backdrop-blur-xl border border-purple-600/20 shadow-lg"
       >
+        {/* Header */}
         <div className="flex items-center gap-3 text-white mb-4">
           <FileText className="w-5 h-5 text-purple-400" />
           <h1 className="text-2xl font-semibold">Analysis Results</h1>
         </div>
 
+        {/* Content */}
         {!content ? (
           <div className="flex-1 flex justify-center items-center">
             <div className="text-center text-gray-400 flex flex-col items-center gap-5">
@@ -111,7 +113,7 @@ const ReviewResume = () => {
             </div>
           </div>
         ) : (
-          <div className="mt-3 max-h-[480px] overflow-y-auto text-sm text-slate-200 pr-3">
+          <div className="mt-3 flex-1 overflow-y-auto text-sm text-slate-200 pr-3 pb-4">
             <div className="reset-tw">
               <Markdown>{content}</Markdown>
             </div>

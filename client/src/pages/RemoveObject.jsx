@@ -131,16 +131,12 @@ const RemoveObject = () => {
             </div>
           </div>
         ) : (
-          <div className="flex-1 flex items-center justify-center">
-            <div className="flex-1 flex items-center justify-center mt-4">
-              <div className="w-full h-[420px] rounded-xl overflow-hidden bg-black/30 flex items-center justify-center">
-                <img
-                  src={content}
-                  alt="Processed"
-                  className="max-w-full max-h-full object-contain"
-                />
-              </div>
-            </div>
+          <div className="flex-1 mt-3 rounded-xl overflow-hidden bg-[#0E1328]">
+            <img
+              src={content}
+              alt="Processed"
+              className="w-full h-full object-contain"
+            />
           </div>
         )}
       </div>

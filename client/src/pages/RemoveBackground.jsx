@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Eraser, Sparkles } from "lucide-react";
 import axios from "axios";
-import bg1 from "../assets/bg1.png"; // Background image
+import bg1 from "../assets/bg1.png";
 import { useAuth } from "@clerk/clerk-react";
 import toast from "react-hot-toast";
 
@@ -18,6 +18,7 @@ const RemoveBackground = () => {
     e.preventDefault();
     try {
       setLoading(true);
+      setContent("");
 
       const formData = new FormData();
       formData.append("image", input);
@@ -48,13 +49,12 @@ const RemoveBackground = () => {
       className="h-full overflow-y-auto p-8 grid grid-cols-1 lg:grid-cols-5 gap-8 bg-cover bg-center"
       style={{ backgroundImage: `url(${bg1})` }}
     >
-      {/* LEFT CARD – Upload Image */}
+      {/* LEFT CARD */}
       <form
         onSubmit={onSubmitHandler}
         className="lg:col-span-2 w-full p-6 rounded-2xl
         bg-gradient-to-br from-[#1E1F3D]/90 to-[#0B1020]/80
-        backdrop-blur-xl border border-purple-600/20
-        shadow-lg hover:shadow-purple-500/30 transition"
+        backdrop-blur-xl border border-purple-600/20 shadow-lg"
       >
         <div className="flex items-center gap-3 text-white">
           <Sparkles className="w-6 text-purple-400" />
@@ -71,8 +71,9 @@ const RemoveBackground = () => {
           rounded-lg border border-purple-500/20 focus:border-purple-400
           outline-none transition"
         />
+
         <p className="text-xs text-gray-400 mt-1">
-          Supports JPG, PNG, and other image formats
+          Supports JPG, PNG, WEBP formats
         </p>
 
         <button
@@ -83,7 +84,7 @@ const RemoveBackground = () => {
           text-white py-2 rounded-xl shadow-lg hover:scale-[1.03] transition"
         >
           {loading ? (
-            <span className="w-4 h-4 my-1 rounded-full border-2 border-t-transparent animate-spin"></span>
+            <span className="w-4 h-4 border-2 border-t-transparent rounded-full animate-spin"></span>
           ) : (
             <Eraser className="w-5" />
           )}
@@ -91,9 +92,9 @@ const RemoveBackground = () => {
         </button>
       </form>
 
-      {/* RIGHT CARD – Output */}
+      {/* RIGHT CARD */}
       <div
-        className="lg:col-span-3 w-full p-6 rounded-2xl flex flex-col min-h-[28rem]
+        className="lg:col-span-3 w-full p-6 rounded-2xl flex flex-col min-h-[32rem]
         bg-gradient-to-br from-[#1E1F3D]/90 to-[#0B1020]/80
         backdrop-blur-xl border border-purple-600/20 shadow-lg"
       >
@@ -102,7 +103,8 @@ const RemoveBackground = () => {
           <h1 className="text-2xl font-semibold">Processed Image</h1>
         </div>
 
-        {!content ? (
+        {/* EMPTY STATE */}
+        {!content && !loading && (
           <div className="flex-1 flex justify-center items-center">
             <div className="text-center text-gray-400 flex flex-col items-center gap-5">
               <Eraser className="w-10 h-10 text-purple-500" />
@@ -112,9 +114,31 @@ const RemoveBackground = () => {
               </p>
             </div>
           </div>
-        ) : (
-          <div className="mt-3 max-h-[480px] overflow-y-auto flex justify-center">
-            <img src={content} alt="processed" className="w-auto max-h-[480px]" />
+        )}
+
+        {/* LOADING */}
+        {loading && (
+          <div className="flex-1 flex justify-center items-center">
+            <div className="w-16 h-16 border-4 border-purple-500/40 border-t-purple-500 rounded-full animate-spin"></div>
+          </div>
+        )}
+
+        {/* RESULT IMAGE */}
+        {content && !loading && (
+          <div className="flex-1 relative mt-3 rounded-xl overflow-hidden bg-[#0E1328]">
+            {/* blurred background fill */}
+            <img
+              src={content}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-30"
+            />
+
+            {/* main image */}
+            <img
+              src={content}
+              alt="processed"
+              className="relative w-full h-full object-contain"
+            />
           </div>
         )}
       </div>
